@@ -1,11 +1,23 @@
 import React from 'react';
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import './App.scss';
+import { Home } from './pages/Home'
+import { Quoter } from './pages/Quoter'
+import { Thank } from './pages/Thank'
+import { NotFound } from './pages/NotFound'
 
 const App = () => {
   return (
     <div className="App">
-      
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/arma-tu-plan" element={<Quoter />} />
+          <Route path="/gracias" element={<Thank />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
