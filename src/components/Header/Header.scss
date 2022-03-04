@@ -1,0 +1,79 @@
+.header {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e4e8f7;
+}
+
+.header__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.header__logo {
+  padding-left: 120px;
+}
+
+.header__links {
+  display: flex;
+  padding-right: 120px;
+  gap: 25px;
+}
+
+.header__link-answer {
+  a {
+    color: #676f8f;
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
+
+.header__link-phone {
+  a {
+    color: #6f7dff;
+    font-size: 14px;
+    line-height: 24px;
+
+    .header__link-phone-number {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}
+
+@media screen and (max-width:768px) {
+  .header__content {
+    height: 56px;
+  }
+
+  .header__logo {
+    padding-left: 32px;
+
+    svg {
+      width: 92px;
+      height: 16px;
+    }
+  }
+
+  .header__links {
+    padding-right: 32px;
+  }
+
+  .header__link-answer {
+    display: none;
+  }
+
+  .header__link-phone {
+    a {
+      font-size: 0;
+      line-height: initial;
+
+      span:after {
+        content: 'Llámanos';
+        font-size: 14px;
+      }
+    }
+  }
+}

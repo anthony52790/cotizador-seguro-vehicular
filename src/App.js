@@ -7,9 +7,12 @@ import { Quoter } from './pages/Quoter'
 import { Thank } from './pages/Thank'
 import { NotFound } from './pages/NotFound'
 
+import { Header } from './components/Header';
+
 const App = () => {
   return (
     <div className="App">
+      <Header/>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
