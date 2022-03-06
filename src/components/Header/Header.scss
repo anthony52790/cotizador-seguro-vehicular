@@ -2,6 +2,8 @@
   width: 100%;
   background-color: #ffffff;
   border-bottom: 1px solid #e4e8f7;
+  position: fixed;
+  z-index: 999;
 }
 
 .header__content {
