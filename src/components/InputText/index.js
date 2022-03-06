@@ -20,10 +20,10 @@ export const InputText = ({
 
   const validate = () => {
     if (expReg) {
-      if (!expReg.exec(state.value)) {
-        setState({ ...state, valid: true });
+      if (expReg.test(state.value)) {
+        setState({ ...state, valid: 'true' });
       } else {
-        setState({ ...state, valid: false });
+        setState({ ...state, valid: 'false' });
       }
     }
   }
@@ -41,9 +41,10 @@ export const InputText = ({
           value={state.value}
           onChange={onChange}
           onKeyUp={validate}
+          onBlur={validate}
         />
       </div>
-      {state.valid ? <span className="show-error">{textError}</span> : <></>}
+      {state.valid === 'false' ? <span className="show-error">{textError}</span> : <></>}
     </div>
   )
 }

@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import './QuoteForm.scss'
 import { InputText } from '../InputText';
 import { Checkbox } from '../Checkbox';
 import { Button } from '../Button';
 
+import { DataContext } from '../../contexts/dataContext'
 import { regexp } from '../../utils/constantes'
 
 export const QuoteForm = () => {
 
-  const [document, setDocument] = useState({ value: '', valid: false })
-  const [phone, setPhone] = useState({ value: '', valid: false })
-  const [placa, setPlaca] = useState({ value: '', valid: false })
+  const [document, setDocument] = useState({ value: '', valid: '' })
+  const [phone, setPhone] = useState({ value: '', valid: '' })
+  const [placa, setPlaca] = useState({ value: '', valid: '' })
   const [isChecked, setIsChecked] = useState(true)
+  const { setBody } = useContext(DataContext)
+  const navigate = useNavigate();
 
   const onHandleChecked = () => {
     setIsChecked(!isChecked)
@@ -20,18 +24,16 @@ export const QuoteForm = () => {
 
   const onHandleSubmit = (event) => {
     event.preventDefault()
-    if (!document.valid && !phone.valid && !placa.valid && isChecked) {
 
-      setDocument({ value: '', valid: false });
-      setPhone({ value: '', valid: false });
-      setPlaca({ value: '', valid: false });
+    if (document.valid === 'true' && phone.valid === 'true' && placa.valid === 'true' && isChecked) {
 
-      window.location.href = "/arma-tu-plan"
+      setBody({
+        document: document.value,
+        celular: phone.value,
+        placa: placa.value
+      })
 
-    } else {
-      setDocument({ ...document, valid: true });
-      setPhone({ ...phone, valid: true });
-      setPlaca({ ...placa, valid: true });
+      navigate('/arma-tu-plan')
     }
   }
 
@@ -86,6 +88,7 @@ export const QuoteForm = () => {
                   state={placa}
                   setState={setPlaca}
                   textError='Error!'
+                  expReg={regexp.placa}
                 />
               </div>
             </div>

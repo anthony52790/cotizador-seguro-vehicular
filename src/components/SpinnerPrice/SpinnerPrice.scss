@@ -1,0 +1,34 @@
+.spinner-price__amount {
+  border: 1px solid #c5cbe0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 160px;
+  height: 56px;
+  .spinner-price__amount-box {
+    display: inline-flex;
+    height: 100%;
+  }
+  button {
+    cursor: pointer;
+    width: 39px;
+    height: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+  }
+  input {
+    width: 80px;
+    height: 100%;
+    text-align: center;
+    border: none;
+    color: #494f66;
+    font-size: 16px;
+    outline: none;
+  }
+  .btn-down, .btn-up {
+    background: transparent;
+    color: #6f7dff;
+    font-size: 25px;
+  }
+}
