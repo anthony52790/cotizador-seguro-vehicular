@@ -1,0 +1,17 @@
+.button {
+  text-align: center;
+  .btn {
+    padding: 19.5px;
+    font-size: 14px;
+    font-family: 'Lato';
+    font-weight: 700;
+    border: navajowhite;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+
+.btn-red {
+  background-color: #ef3340;
+  color: #ffffff;
+}

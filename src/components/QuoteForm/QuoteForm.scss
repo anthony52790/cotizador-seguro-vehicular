@@ -1,0 +1,127 @@
+.qoute-form {
+  display: block;
+}
+
+.quote-form__content {
+  width: 100%;
+  max-width: 288px;
+  margin: 15% 0 0 210px;
+}
+
+form {
+  h2{
+    font-size: 28px;
+    color: #494f66;
+    font-family: 'Lato';
+    font-weight: 400;
+  }
+}
+
+.quote-form__box {
+  margin-top: 24px;
+  max-width: 100%;
+}
+
+.quote-form__inputs {
+  margin-bottom: 16px;
+}
+
+.quote-form__input {
+  margin-bottom: 16px;
+}
+
+select {
+  background-color: #fff;
+  -webkit-appearance: none;
+  border-radius: 4px 0px 0px 4px;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.10168 1.54816L4.74374 4.9025C4.8118 4.96544 4.90457 5 4.99999 5C5.09546 5 5.18825 4.96545 5.25632 4.90249L8.89838 1.54816C8.9658 1.48576 9 1.40457 9 1.32288C9 1.23693 8.96197 1.15162 8.88829 1.08856C8.7463 0.967212 8.52266 0.97092 8.38579 1.09754L4.99999 4.21471L1.61425 1.09753C1.47737 0.970904 1.25368 0.96721 1.1117 1.08861C0.966875 1.21245 0.96219 1.41911 1.10168 1.54816Z' fill='%23EF3340' stroke='%23EF3340' stroke-width='0.8'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: 90% center;
+  background-position-x: calc(100% - 16px);
+  background-size: 10px;
+}
+
+.container-selectinput {
+  display: flex;
+
+  .select {
+    width: 90px;
+    .customSelect{
+      transition: all 0.3s;
+      padding: 0 16px;
+      border-radius: 4px 0 0 4px;
+      border-right: none;
+      outline: none;
+      color: #494F66;
+      width: 90px;
+    }
+    &.showError > select {
+      border-color: #FF757A;
+      border-right: none;
+    }
+  }
+  .input-custom {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  input {
+    border-radius: 0 4px 4px 0 !important;
+  }
+}
+
+.quote-form__checkbox {
+  margin-bottom: 16px;
+}
+
+.quote-form__checkbox-content {
+  display: flex;
+  -webkit-user-select: none;
+  user-select: none;
+
+  .checkbox {
+    margin-top: 3px;
+  }
+
+  > label {
+    font-family: 'Roboto';
+    font-weight: 300;
+    margin-left: 12px;
+    p {
+      line-height: 20px;
+      letter-spacing: 0.2px;
+      a {
+        font-family: 'Roboto';
+        font-weight: 400;
+        text-decoration: underline;
+      }
+    }
+    p, a {
+      color: #676f8f;
+      font-size: 12px;
+    }
+  }
+}
+
+.quote-form__footer {
+  margin-top: 45px;
+  display: flex;
+  justify-content: left;
+
+  button {
+    width: 192px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .quote-form__content {
+    max-width: 296px;
+    margin: 8% auto 54px;
+  }
+  .quote-form__footer {
+    display: block;
+    button {
+      width: 100%;
+    }
+  }
+}

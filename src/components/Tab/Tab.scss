@@ -1,0 +1,31 @@
+.tab__button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.tab__item {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  position: relative;
+  &.active {
+    button {
+      color: #ef3340;
+    }
+  }
+  button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    box-shadow: none;
+    font-family: 'Lato';
+    font-weight: 700;
+    width: 100%;
+    background-color: #ffffff;
+    color: #494f66;
+    font-size: 10px;
+    max-width: 128px;
+    padding: 0 24px 15px;
+  }  
+}
