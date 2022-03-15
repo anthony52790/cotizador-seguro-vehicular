@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+
+import { useDimensions } from '../../hooks/useDimensions'
+import { AccordionItem, AccordionDetails, AccordionSummary } from '../../components/Accordion';
+import { AccordionContext } from '../../contexts/dataContext';
 import { AddCover } from '../../components/AddCover';
 import { Button } from '../../components/Button';
 import { SpinnerPrice } from '../../components/SpinnerPrice';
@@ -7,6 +11,7 @@ import { Tab } from '../../components/Tab';
 import { TabContent } from '../../components/TabContent';
 
 import { useService } from '../../hooks/useService'
+import { formatPrice } from '../../utils/functions'
 import './Quoter.scss'
 
 export const Quoter = () => {
@@ -20,20 +25,31 @@ export const Quoter = () => {
   const [coverageShock, setCoverageShock] = useState(false)
   const [coverageRun, setCoverageRun] = useState(false)
 
+  const [clicked, setCLicked] = useState(1)
+  const contextValues = { clicked, setCLicked }
+
+  const targetRef = useRef(null);
+  const size = useDimensions(targetRef);
+
   return (
-    <div className='quoter'>
+    <div className='quoter' ref={targetRef}>
       <div className='quoter__container'>
         <div className='quoter__sidebar'>
-          <div className='sidebar__items'>
-            <div className='sidebar__item'>
-              <span className='sidebar__icon'>1</span>
-              <p>Datos</p>
+          {size.width > 768 ?
+            <div className='sidebar__items'>
+              <div className='sidebar__item'>
+                <span className='sidebar__icon'>1</span>
+                <p>Datos</p>
+              </div>
+              <div className='sidebar__item active'>
+                <span className='sidebar__icon'>2</span>
+                <p>Arma tu plan</p>
+              </div>
+            </div> :
+            <div className='progress-line'>
+                
             </div>
-            <div className='sidebar__item active'>
-              <span className='sidebar__icon'>2</span>
-              <p>Arma tu plan</p>
-            </div>
-          </div>
+          }
         </div>
         <div className='quoter__page-plan'>
           <div className='page-plan__content'>
@@ -76,7 +92,7 @@ export const Quoter = () => {
                         <SpinnerPrice
                           state={amount}
                           setState={setAmount}
-                          symbol='$'
+                          symbol='S/'
                           priceMin={12500}
                           priceMax={16500}
                           iteration={100}
@@ -96,82 +112,87 @@ export const Quoter = () => {
                         <div className='tabs__body'>
                           <TabContent index='1' action={setActiveTab} active={activeTab}>
                             <div className='accordion'>
-                              <div className='accordion__item' data-index='1'>
-                                <div className='accordion__imagen'>
-                                  <span className='accordion-image-1'></span>
-                                </div>
-                                <div className='accordion__title'>
-                                  <button>
-                                    Llanta robada
-                                    <span className='accordion__icon-arrow'></span>
-                                  </button>
-                                </div>
-                                <div className='accordion__box'>
-                                  <AddCover
-                                    active={coverageTire}
-                                    setActive={setCoverageTire}
-                                    totalPrice={totalPrice}
-                                    setPrice={setTotalPrice}
-                                    addCover={15}
-                                  />
-                                  <div className='accordion__description'>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                              <AccordionContext.Provider value={contextValues}>
+                                <AccordionItem>
+                                  <AccordionSummary dataIndex={1}>
+                                    <div className='accordion__imagen'>
+                                      <span className='accordion-image-1'></span>
+                                    </div>
+                                    <div className='accordion__title'>
+                                      <p>Llanta robada</p>
+                                    </div>
+                                  </AccordionSummary>
+                                  <AccordionDetails dataIndex={1}>
+                                    <AddCover
+                                      active={coverageTire}
+                                      setActive={setCoverageTire}
+                                      totalPrice={totalPrice}
+                                      setPrice={setTotalPrice}
+                                      addCover={15}
+                                    />
+                                    <div className='accordion__description'>
+                                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                                    </div>
+                                  </AccordionDetails>
+                                </AccordionItem>
+                                <AccordionItem>
+                                  <div style={amount > 16000 ? { 'display': 'none' } : { 'display': 'block' }}>
+                                    <AccordionSummary dataIndex={2}>
+                                      <div className='accordion__imagen'>
+                                        <span className='accordion-image-2'></span>
+                                      </div>
+                                      <div className='accordion__title'>
+                                        <p>Choque y/o pasarte la luz roja</p>
+                                      </div>
+                                    </AccordionSummary>
+                                    <AccordionDetails dataIndex={2}>
+                                      <AddCover
+                                        active={coverageShock}
+                                        setActive={setCoverageShock}
+                                        totalPrice={totalPrice}
+                                        setPrice={setTotalPrice}
+                                        addCover={20}
+                                      />
+                                      <div className='accordion__description'>
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                                      </div>
+                                    </AccordionDetails>
                                   </div>
-                                </div>
-                              </div>
-                              <div className='accordion__item' data-index='2' style={amount > 16000 ? { 'display': 'none' } : { 'display': 'block' }}>
-                                <div className='accordion__imagen'>
-                                  <span className='accordion-image-2'></span>
-                                </div>
-                                <div className='accordion__title'>
-                                  <button>
-                                    Choque y/o pasarte la luz roja
-                                    <span className='accordion__icon-arrow'></span>
-                                  </button>
-                                </div>
-                                <div className='accordion__box'>
-                                  <AddCover
-                                    active={coverageShock}
-                                    setActive={setCoverageShock}
-                                    totalPrice={totalPrice}
-                                    setPrice={setTotalPrice}
-                                    addCover={20}
-                                  />
-                                  <div className='accordion__description'>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                                  </div>
-                                </div>
-                              </div>
-                              <div className='accordion__item' data-index='3'>
-                                <div className='accordion__imagen'>
-                                  <span className='accordion-image-3'></span>
-                                </div>
-                                <div className='accordion__title'>
-                                  <button>
-                                    ATROPELLO EN LA VIA EVITAMIENTO
-                                    <span className='accordion__icon-arrow'></span>
-                                  </button>
-                                </div>
-                                <div className='accordion__box'>
-                                  <AddCover
-                                    active={coverageRun}
-                                    setActive={setCoverageRun}
-                                    totalPrice={totalPrice}
-                                    setPrice={setTotalPrice}
-                                    addCover={50}
-                                  />
-                                  <div className='accordion__description'>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                                  </div>
-                                </div>
-                              </div>
+                                </AccordionItem>
+                                <AccordionItem>
+                                  <AccordionSummary dataIndex={3}>
+                                    <div className='accordion__imagen'>
+                                      <span className='accordion-image-3'></span>
+                                    </div>
+                                    <div className='accordion__title'>
+                                      <p>Atropello en la via Evitamiento</p>
+                                    </div>
+                                  </AccordionSummary>
+                                  <AccordionDetails dataIndex={3}>
+                                    <AddCover
+                                      active={coverageRun}
+                                      setActive={setCoverageRun}
+                                      totalPrice={totalPrice}
+                                      setPrice={setTotalPrice}
+                                      addCover={50}
+                                    />
+                                    <div className='accordion__description'>
+                                      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                                    </div>
+                                  </AccordionDetails>
+                                </AccordionItem>
+                              </AccordionContext.Provider>
                             </div>
                           </TabContent>
                           <TabContent index='2' action={setActiveTab} active={activeTab}>
-                            VACIO 1
+                            <div>
+                              VACIO 1
+                            </div>
                           </TabContent>
                           <TabContent index='3' action={setActiveTab} active={activeTab}>
-                            VACIO 2
+                            <div>
+                              VACIO 2
+                            </div>
                           </TabContent>
                         </div>
                       </div>
@@ -182,7 +203,7 @@ export const Quoter = () => {
                   <div className='amount__content'>
                     <div className='amount__box'>
                       <h3>MONTO</h3>
-                      <div className='amount'>{`$${totalPrice}`}</div>
+                      <div className='amount'>{formatPrice(totalPrice)}</div>
                       <span>mensuales</span>
                     </div>
                     <div className='amount__description'>

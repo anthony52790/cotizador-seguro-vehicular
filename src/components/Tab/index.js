@@ -4,9 +4,7 @@ import './Tab.scss'
 
 export const Tab = ({ index, action, active, children }) => {
 
-  const onHandleClick = () => {
-    action(index)
-  }
+  const onHandleClick = () => action(index)
 
   return (
     <div className={`tab__item ${active === index ? 'active' : ''}`}>

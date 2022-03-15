@@ -1,0 +1,28 @@
+.accordion__item {
+  position: relative;
+}
+
+.accordion__summary {
+  display: block;
+  .accordion__action {
+    cursor: pointer;
+  }
+  .icon-arrow {
+    position: absolute;
+    right: 5px;
+    border-right: 3px solid #ef3340;
+    border-bottom: 3px solid #ef3340;
+    width: 11px;
+    height: 11px;
+    &.up {
+      top: 30px;
+      transition: .3s ease-in-out;
+      transform: rotate(-135deg);
+    }
+    &.down {
+      top: 25px;
+      transition: .3s ease-in-out;
+      transform: rotate(-315deg);
+    }
+  }
+}
