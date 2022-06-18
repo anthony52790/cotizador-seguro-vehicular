@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './AddCover.scss'
-
 export const AddCover = ({ active, setActive, setPrice, totalPrice, addCover }) => {
 
   const onHandleClick = () => {
@@ -15,8 +13,8 @@ export const AddCover = ({ active, setActive, setPrice, totalPrice, addCover }) 
   }
 
   return (
-    <button onClick={onHandleClick} className='add-coverage'>
-      <span className={`${active ? 'enabled' : 'disabled'}`}></span>
+    <button onClick={onHandleClick}>
+      <span className='add-coverage'></span>
       <p>{active ? 'QUITAR' : 'AGREGAR'}</p>
     </button>
   )

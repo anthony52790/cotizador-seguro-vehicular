@@ -10,6 +10,7 @@
 
 .quoter__sidebar {
   width: 408px;
+  height: 2113px;
   background-color: #f7f8fc;
   display: block;
 }
@@ -115,7 +116,7 @@
 }
 
 .information__cover {
-  margin-bottom: 100px;
+
 }
 
 .information__card{
@@ -306,6 +307,7 @@
 
 .accordion__item {
   padding-left: 60px;
+  position: relative;
   padding-bottom: 35px;
   padding-top: 20px;
   &:after {
@@ -331,13 +333,13 @@
   }
 
   .accordion-image-1 {
-    background-image: url('../../assets/images/icon_theft.png');
+    background-image: url('../../assets/images/icon_perdidatotal.png');
   }
   .accordion-image-2 {
     background-image: url('../../assets/images/icon__down.png');
   }
   .accordion-image-3 {
-    background-image: url('../../assets/images/icon_perdidatotal.png');
+    background-image: url('../../assets/images/icon_theft.png');
   }
 
   button {
@@ -348,7 +350,7 @@
   }
 
   .accordion__title {
-    p {
+    button {
       font-size: 20px;
       font-family: "Lato";
       font-weight: 400;
@@ -360,8 +362,7 @@
       padding-right: 70px;
     }
   }
-  .accordion__details {
-    overflow: hidden;
+  .accordion__box {
     margin-top: 15px;
     .accordion__description {
       font-size: 14px;
@@ -371,6 +372,9 @@
       font-weight: 400;
     }
     button {
+      color: #6f7dff;
+      font-size: 12px;
+      letter-spacing: 0.6px;
       position: relative;
       margin: 5px 0 17px;
     }
@@ -388,53 +392,9 @@
   }
   .page-plan__content {
     margin: auto;
-    width: 100%;
   }
   .information__plan {
     display: block;
-    padding: 0;
-  }
-
-  .information__card {
-    background-color: #f7f8fc;
-    border-top: 1px solid #f0f2fa;
-    padding-left: 32px;
-    padding-right: 32px;
-    padding-bottom: 56px;
-    padding-top: 40px;
-    .card {
-      width: 100%;
-      border: none;
-      background-color: #ffffff;
-      box-shadow: 0px 0px 10px rgba(163,171,204,0.12);
-    }
-  }
-
-  .calculator {
-    margin-left: 32px;
-    margin-right: 32px;
-
-    .calculator__box {
-      flex-wrap: wrap;
-      gap: 25px;
-    }
-    .spinner-price__amount {
-      width: 100%;
-      .spinner-price__amount-box {
-        display: flex;
-        justify-content: space-between;
-      }
-      button {
-        width: 70px;
-      }
-      input {
-        width: 169px;
-      }
-    }
-  }
-
-  .information__tabs {
-    border: none;
   }
 
   .information__amount {
