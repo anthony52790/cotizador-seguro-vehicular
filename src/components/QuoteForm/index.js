@@ -15,6 +15,7 @@ export const QuoteForm = () => {
   const [phone, setPhone] = useState({ value: '', valid: '' })
   const [placa, setPlaca] = useState({ value: '', valid: '' })
   const [isChecked, setIsChecked] = useState(true)
+  const [errorForm, setErrorForm] = useState(false)
   const { setBody } = useContext(DataContext)
   const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ export const QuoteForm = () => {
     event.preventDefault()
 
     if (document.valid === 'true' && phone.valid === 'true' && placa.valid === 'true' && isChecked) {
-
+      setErrorForm(false)
       setBody({
         document: document.value,
         celular: phone.value,
@@ -34,6 +35,8 @@ export const QuoteForm = () => {
       })
 
       navigate('/arma-tu-plan')
+    } else {
+      setErrorForm(true)
     }
   }
 
@@ -80,14 +83,14 @@ export const QuoteForm = () => {
               </div>
               <div className='quote-form__input'>
                 <InputText
-                  placeholder='Placa'
+                  placeholder='Placa ejm. ABC-123'
                   type='text'
                   name='placa'
                   id='placa'
                   maxlength='7'
                   state={placa}
                   setState={setPlaca}
-                  textError='Error!'
+                  textError='*Tu número de placa es inválido'
                   expReg={regexp.placa}
                 />
               </div>
@@ -105,6 +108,7 @@ export const QuoteForm = () => {
             </div>
             <div className='quote-form__footer'>
               <Button className='btn-red'>COTÍZALO</Button>
+              {errorForm && <span className="show-error">Complete los campos obligatoriamente</span>}
             </div>
           </div>
         </form>
